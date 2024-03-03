@@ -1,0 +1,67 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Coding and Decoding</title>
+</head>
+<body>
+    <h1>Coding and Decoding</h1>
+    <form method="post" action="/">
+        <label for="message">Enter Your Message:</label>
+        <input type="text" name="message" required>
+        <br>
+        <label for="coding">1 for Coding, 0 for Decoding:</label>
+        <input type="number" name="coding" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    
+    {% if result %}
+        <h2>Result:</h2>
+        <p>{{ result|join(' ') }}</p>
+    {% endif %}
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding and Decoding</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Coding and Decoding</h1>
+    <form method="post" action="/">
+        <label for="message">Enter Your Message:</label>
+        <input type="text" name="message" required>
+        <br>
+        <label for="coding">1 for Coding, 0 for Decoding:</label>
+        <input type="number" name="coding" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    
+    {% if result %}
+        <h2>Result:</h2>
+        <p id="result">{{ result|join(' ') }}</p>
+        <button onclick="copyToClipboard()">Copy Result</button>
+    {% endif %}
+
+    <script>
+        function copyToClipboard() {
+            var resultText = document.getElementById("result");
+            var textArea = document.createElement("textarea");
+            textArea.value = resultText.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert("Result copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
